@@ -18,27 +18,27 @@ for(const [source,out] of [
  await fs.writeFile(path.join(root,out),gunzipSync(Buffer.from(packed,'base64')));
 }
 const assets={
- 'hero-cosmo.webp':'https://images.unsplash.com/photo-1758270704191-5d7255cc02dd?auto=format&fit=crop&w=1500&q=84&fm=webp',
- 'book-red.webp':'https://images.unsplash.com/photo-1772396867158-e26d9e6256b2?auto=format&fit=crop&w=1200&q=82&fm=webp',
- 'one-to-one.webp':'https://images.unsplash.com/photo-1758685848270-16e64139fe0c?auto=format&fit=crop&w=1200&q=84&fm=webp',
- 'online.webp':'https://images.unsplash.com/photo-1758685733395-dba201403b4d?auto=format&fit=crop&w=1200&q=82&fm=webp',
- 'cambridge-dictionary.webp':'https://images.unsplash.com/photo-1695238665698-06fd32f56272?auto=format&fit=crop&w=1200&q=84&fm=webp',
- 'abroad-cosmo.webp':'https://images.unsplash.com/photo-1779896412124-9d2711feda0c?auto=format&fit=crop&w=1400&q=84&fm=webp'
+ 'cosmo-hero.png':'https://academiacosmoschool.com/wp-content/uploads/2023/03/Rectangle-255-1516x652.png',
+ 'cosmo-dictionary.jpg':'https://academiacosmoschool.com/wp-content/uploads/2024/03/diccionario-ingles-scaled.jpg',
+ 'cosmo-classroom.jpg':'https://academiacosmoschool.com/wp-content/uploads/2017/09/home4-gallery.jpg',
+ 'cosmo-learning.jpg':'https://academiacosmoschool.com/wp-content/uploads/2017/08/pexels-photo-40120-e1500018015404-1.jpg',
+ 'cosmo-cambridge.jpg':'https://academiacosmoschool.com/wp-content/uploads/2017/08/home-1-bg-e1503477367706-1516x652.jpg',
+ 'cosmo-abroad.webp':'https://academiacosmoschool.com/wp-content/uploads/2025/10/filters_quality70-1024x576.webp'
 };
 await Promise.all(Object.entries(assets).map(async([name,url])=>{
  const target=path.join(imgDir,name);
  try{const stat=await fs.stat(target);if(stat.size>8000)return}catch{}
- const res=await fetch(url,{headers:{'User-Agent':'CosmoSchoolPrototype/5.0'}});
+ const res=await fetch(url,{headers:{'User-Agent':'CosmoSchoolPrototype/6.0'}});
  if(!res.ok)throw new Error(`Could not fetch ${name}: ${res.status}`);
  const bytes=Buffer.from(await res.arrayBuffer());
  if(bytes.length<8000)throw new Error(`Image ${name} is unexpectedly small`);
  await fs.writeFile(target,bytes);
 }));
-const {pages}=await import(pathToFileURL(path.join(root,'src/site-v5.mjs')).href+`?v=${Date.now()}`);
+const {pages}=await import(pathToFileURL(path.join(root,'src/site-v6.mjs')).href+`?v=${Date.now()}`);
 await fs.rm(dist,{recursive:true,force:true});
 await fs.mkdir(dist,{recursive:true});
 await fs.cp(pub,dist,{recursive:true});
 for(const [file,html] of Object.entries(pages)){
  const out=path.join(dist,file);await fs.mkdir(path.dirname(out),{recursive:true});await fs.writeFile(out,html);
 }
-console.log(`Built ${Object.keys(pages).length} business-focused routes + dedicated mobile layouts + Cosmo quality layer v5 → dist/`);
+console.log(`Built ${Object.keys(pages).length} business-focused routes + dedicated mobile layouts + official Cosmo imagery + publication layer v6 → dist/`);
