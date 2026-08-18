@@ -3,8 +3,10 @@ const mobile=document.querySelector('[data-mobile-menu]');
 const header=document.querySelector('.site-header');
 let lastY=0;
 
-// Lightweight wordmark fallback for the commercial prototype. Keeps the repo self-contained
-// without shipping a heavy brand bitmap while preserving a deliberate, premium header treatment.
+// Interior pages start over light backgrounds; keep navigation legible before scroll.
+if(!document.querySelector('.hero-home,.enroll-page')) header?.classList.add('interior-light');
+
+// Adaptive wordmark treatment for light/dark sections without shipping multiple logo variants.
 document.querySelectorAll('img[src="/images/logo-web.webp"]').forEach(img=>{
   const mark=document.createElement('span');
   mark.className='brand-type';
@@ -14,7 +16,7 @@ document.querySelectorAll('img[src="/images/logo-web.webp"]').forEach(img=>{
 });
 const brandStyle=document.createElement('style');
 brandStyle.textContent=`
-.brand-type{display:inline-grid;grid-template-columns:auto auto;gap:.18em;align-items:center;font-size:16px;line-height:.9;letter-spacing:-.065em;font-weight:900;white-space:nowrap}.brand-type strong:first-child{color:currentColor}.brand-type strong:last-child{color:#d43b32}.site-header:not(.scrolled) .brand-type strong:last-child{color:#f3a49d}.footer .brand-type{font-size:27px}.footer .brand-type strong:first-child{color:#fff}.phone-shell .brand-type{display:grid;grid-template-columns:1fr;font-size:25px;gap:0;margin:34px auto 0;width:max-content;text-align:center}.phone-shell .brand-type strong:first-child{color:#fff}.phone-shell .brand-type strong:last-child{color:#9db7ff}@media(max-width:820px){.wordmark .brand-type{font-size:14px}}`;
+.brand-type{display:inline-grid;grid-template-columns:auto auto;gap:.18em;align-items:center;font-size:16px;line-height:.9;letter-spacing:-.065em;font-weight:900;white-space:nowrap}.brand-type strong:first-child{color:currentColor}.brand-type strong:last-child{color:#d43b32}.site-header:not(.scrolled):not(.interior-light) .brand-type strong:last-child{color:#f3a49d}.site-header.interior-light:not(.scrolled){color:#0a1830;border-color:rgba(10,24,48,.12);background:rgba(244,241,234,.74);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}.footer .brand-type{font-size:27px}.footer .brand-type strong:first-child{color:#fff}.phone-shell .brand-type{display:grid;grid-template-columns:1fr;font-size:25px;gap:0;margin:34px auto 0;width:max-content;text-align:center}.phone-shell .brand-type strong:first-child{color:#fff}.phone-shell .brand-type strong:last-child{color:#9db7ff}@media(max-width:820px){.wordmark .brand-type{font-size:14px}}`;
 document.head.appendChild(brandStyle);
 
 if(menu&&mobile){
