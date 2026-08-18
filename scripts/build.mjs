@@ -48,7 +48,7 @@ async function packageImage(name,url){
         signal:controller.signal,
         redirect:'follow',
         headers:{
-          'User-Agent':'Mozilla/5.0 (compatible; CosmoSchoolPrototype/6.0)',
+          'User-Agent':'Mozilla/5.0 (compatible; CosmoSchoolPrototype/7.0)',
           'Accept':'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
           'Referer':'https://academiacosmoschool.com/'
         }
@@ -72,7 +72,7 @@ async function packageImage(name,url){
 
 await Promise.all(Object.entries(assets).map(([name,url])=>packageImage(name,url)));
 
-const {pages}=await import(pathToFileURL(path.join(root,'src/site-v6.mjs')).href+`?v=${Date.now()}`);
+const {pages}=await import(pathToFileURL(path.join(root,'src/site-v7.mjs')).href+`?v=${Date.now()}`);
 await fs.rm(dist,{recursive:true,force:true});
 await fs.mkdir(dist,{recursive:true});
 await fs.cp(pub,dist,{recursive:true});
@@ -82,4 +82,4 @@ for(const [file,html] of Object.entries(pages)){
   await fs.writeFile(out,html);
 }
 
-console.log(`Built ${Object.keys(pages).length} business-focused routes + dedicated mobile layouts + official Cosmo imagery + publication layer v6 → dist/`);
+console.log(`Built ${Object.keys(pages).length} routes + dedicated mobile + official Cosmo imagery + functional local lead capture v7 → dist/`);
