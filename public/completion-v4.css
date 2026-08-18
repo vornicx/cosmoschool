@@ -1,0 +1,481 @@
+/* Cosmo School — business completion layer v4
+   Purpose: add genuinely useful decision and enrolment components without
+   flattening the authored desktop/mobile art direction. */
+
+.cosmo-completion {
+  --cs-ink:#0b0b0d;
+  --cs-paper:#f3efe5;
+  --cs-blue:#1737ff;
+  --cs-red:#ff4a42;
+  --cs-line:rgba(11,11,13,.16);
+  position:relative;
+  isolation:isolate;
+  font-family:inherit;
+}
+
+.cosmo-advisor {
+  position:relative;
+  overflow:hidden;
+  background:var(--cs-paper,#f3efe5);
+  color:var(--cs-ink,#0b0b0d);
+  border-top:1px solid rgba(11,11,13,.16);
+  border-bottom:1px solid rgba(11,11,13,.16);
+}
+
+.cosmo-advisor::before {
+  content:"";
+  position:absolute;
+  width:32rem;
+  height:32rem;
+  border:1px solid rgba(23,55,255,.24);
+  border-radius:50%;
+  right:-13rem;
+  top:-16rem;
+  pointer-events:none;
+}
+
+.cosmo-advisor::after {
+  content:"";
+  position:absolute;
+  width:10rem;
+  height:10rem;
+  background:var(--cs-red,#ff4a42);
+  border-radius:50%;
+  left:-6rem;
+  bottom:-5rem;
+  opacity:.94;
+  pointer-events:none;
+}
+
+.cosmo-advisor__inner,
+.cosmo-faq__inner,
+.cosmo-cambridge-choice__inner {
+  width:min(1280px,calc(100% - 64px));
+  margin:0 auto;
+}
+
+.cosmo-advisor__inner {
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:minmax(0,.78fr) minmax(520px,1.22fr);
+  gap:clamp(48px,7vw,112px);
+  padding:clamp(92px,9vw,150px) 0;
+}
+
+.cosmo-advisor__intro {
+  align-self:start;
+  position:sticky;
+  top:120px;
+}
+
+.cosmo-kicker {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:0 0 28px;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+
+.cosmo-kicker::before {
+  content:"";
+  width:34px;
+  height:2px;
+  background:currentColor;
+}
+
+.cosmo-advisor h2,
+.cosmo-faq h2,
+.cosmo-cambridge-choice h2 {
+  margin:0;
+  max-width:780px;
+  font-size:clamp(42px,5.6vw,88px);
+  line-height:.91;
+  letter-spacing:-.055em;
+  font-weight:800;
+}
+
+.cosmo-advisor__intro > p {
+  margin:30px 0 0;
+  max-width:540px;
+  font-size:clamp(17px,1.35vw,20px);
+  line-height:1.55;
+  opacity:.74;
+}
+
+.cosmo-advisor__panel {
+  border-top:1px solid var(--cs-line,rgba(11,11,13,.16));
+}
+
+.cosmo-advisor__step {
+  display:grid;
+  grid-template-columns:58px 1fr;
+  gap:20px;
+  padding:28px 0 32px;
+  border-bottom:1px solid var(--cs-line,rgba(11,11,13,.16));
+}
+
+.cosmo-advisor__num {
+  padding-top:3px;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.12em;
+  opacity:.52;
+}
+
+.cosmo-advisor__question {
+  margin:0 0 18px;
+  font-size:17px;
+  font-weight:750;
+  letter-spacing:-.02em;
+}
+
+.cosmo-advisor__choices {
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+}
+
+.cosmo-advisor__choice {
+  appearance:none;
+  border:1px solid rgba(11,11,13,.22);
+  border-radius:999px;
+  background:transparent;
+  color:inherit;
+  min-height:44px;
+  padding:10px 16px;
+  font:inherit;
+  font-size:13px;
+  font-weight:700;
+  cursor:pointer;
+  transition:background .24s ease,color .24s ease,border-color .24s ease,transform .24s ease;
+}
+
+.cosmo-advisor__choice:hover {
+  transform:translateY(-2px);
+  border-color:rgba(11,11,13,.56);
+}
+
+.cosmo-advisor__choice[aria-pressed="true"] {
+  color:#fff;
+  background:var(--cs-blue,#1737ff);
+  border-color:var(--cs-blue,#1737ff);
+}
+
+.cosmo-advisor__result {
+  position:relative;
+  min-height:238px;
+  margin-top:34px;
+  padding:28px 30px 30px;
+  background:var(--cs-ink,#0b0b0d);
+  color:#fff;
+  overflow:hidden;
+}
+
+.cosmo-advisor__result::after {
+  content:"COSMO";
+  position:absolute;
+  right:-7px;
+  bottom:-20px;
+  font-size:92px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:-.09em;
+  color:rgba(255,255,255,.055);
+  pointer-events:none;
+}
+
+.cosmo-advisor__result small {
+  display:block;
+  margin-bottom:16px;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.58);
+}
+
+.cosmo-advisor__result h3 {
+  position:relative;
+  z-index:1;
+  margin:0;
+  max-width:580px;
+  font-size:clamp(27px,3vw,42px);
+  line-height:1;
+  letter-spacing:-.045em;
+}
+
+.cosmo-advisor__result p {
+  position:relative;
+  z-index:1;
+  margin:16px 0 24px;
+  max-width:620px;
+  font-size:14px;
+  line-height:1.55;
+  color:rgba(255,255,255,.72);
+}
+
+.cosmo-advisor__cta {
+  position:relative;
+  z-index:1;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:48px;
+  padding:11px 18px;
+  border-radius:999px;
+  background:#fff;
+  color:#0b0b0d;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:850;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  transition:transform .24s ease,opacity .24s ease;
+}
+
+.cosmo-advisor__cta:hover { transform:translateY(-2px); }
+.cosmo-advisor__cta[aria-disabled="true"] { opacity:.35; pointer-events:none; }
+
+.cosmo-faq {
+  background:#0b0b0d;
+  color:#fff;
+}
+
+.cosmo-faq__inner {
+  display:grid;
+  grid-template-columns:minmax(0,.72fr) minmax(520px,1.28fr);
+  gap:clamp(48px,8vw,128px);
+  padding:clamp(88px,9vw,146px) 0;
+}
+
+.cosmo-faq h2 { font-size:clamp(42px,5vw,78px); }
+.cosmo-faq__list { border-top:1px solid rgba(255,255,255,.22); }
+
+.cosmo-faq details {
+  border-bottom:1px solid rgba(255,255,255,.22);
+}
+
+.cosmo-faq summary {
+  list-style:none;
+  cursor:pointer;
+  display:grid;
+  grid-template-columns:1fr 26px;
+  gap:20px;
+  align-items:center;
+  padding:25px 0;
+  font-size:clamp(16px,1.5vw,20px);
+  font-weight:700;
+}
+
+.cosmo-faq summary::-webkit-details-marker { display:none; }
+.cosmo-faq summary::after {
+  content:"+";
+  display:grid;
+  place-items:center;
+  width:25px;
+  height:25px;
+  border:1px solid rgba(255,255,255,.36);
+  border-radius:50%;
+  font-weight:500;
+  transition:transform .28s ease,background .28s ease,color .28s ease;
+}
+.cosmo-faq details[open] summary::after {
+  transform:rotate(45deg);
+  background:#fff;
+  color:#0b0b0d;
+}
+.cosmo-faq details p {
+  margin:0;
+  padding:0 54px 26px 0;
+  max-width:720px;
+  color:rgba(255,255,255,.68);
+  line-height:1.6;
+  font-size:14px;
+}
+
+.cosmo-cambridge-choice {
+  background:#1737ff;
+  color:#fff;
+}
+
+.cosmo-cambridge-choice__inner {
+  padding:clamp(86px,9vw,144px) 0;
+}
+
+.cosmo-cambridge-choice__head {
+  display:grid;
+  grid-template-columns:1fr .7fr;
+  gap:48px;
+  align-items:end;
+  margin-bottom:64px;
+}
+
+.cosmo-cambridge-choice__head p {
+  margin:0;
+  max-width:520px;
+  justify-self:end;
+  font-size:16px;
+  line-height:1.55;
+  color:rgba(255,255,255,.74);
+}
+
+.cosmo-cambridge-choice__grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border-top:1px solid rgba(255,255,255,.32);
+}
+
+.cosmo-cambridge-choice article {
+  min-height:315px;
+  padding:32px 34px 36px 0;
+  border-bottom:1px solid rgba(255,255,255,.32);
+}
+
+.cosmo-cambridge-choice article + article {
+  padding-left:34px;
+  border-left:1px solid rgba(255,255,255,.32);
+}
+
+.cosmo-cambridge-choice article small {
+  display:block;
+  margin-bottom:48px;
+  font-size:10px;
+  letter-spacing:.14em;
+  font-weight:800;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.58);
+}
+.cosmo-cambridge-choice article h3 {
+  margin:0 0 18px;
+  font-size:clamp(30px,3.4vw,50px);
+  letter-spacing:-.045em;
+  line-height:.98;
+}
+.cosmo-cambridge-choice article p {
+  margin:0 0 28px;
+  max-width:530px;
+  font-size:14px;
+  line-height:1.58;
+  color:rgba(255,255,255,.72);
+}
+.cosmo-inline-link {
+  display:inline-flex;
+  color:inherit;
+  text-underline-offset:5px;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+
+@media (max-width:900px) {
+  .cosmo-advisor__inner,
+  .cosmo-faq__inner,
+  .cosmo-cambridge-choice__head {
+    grid-template-columns:1fr;
+  }
+  .cosmo-advisor__intro { position:relative; top:auto; }
+  .cosmo-faq__inner { gap:48px; }
+  .cosmo-cambridge-choice__head p { justify-self:start; }
+}
+
+@media (max-width:820px) {
+  .cosmo-advisor__inner,
+  .cosmo-faq__inner,
+  .cosmo-cambridge-choice__inner {
+    width:calc(100% - 32px);
+  }
+
+  .cosmo-advisor::before {
+    width:22rem;
+    height:22rem;
+    right:-13rem;
+    top:-10rem;
+  }
+
+  .cosmo-advisor__inner {
+    display:block;
+    padding:74px 0 82px;
+  }
+
+  .cosmo-kicker { margin-bottom:20px; font-size:9px; }
+
+  .cosmo-advisor h2,
+  .cosmo-faq h2,
+  .cosmo-cambridge-choice h2 {
+    font-size:clamp(42px,14vw,64px);
+    line-height:.9;
+  }
+
+  .cosmo-advisor__intro > p {
+    margin-top:22px;
+    font-size:16px;
+  }
+
+  .cosmo-advisor__panel { margin-top:52px; }
+
+  .cosmo-advisor__step {
+    grid-template-columns:34px 1fr;
+    gap:8px;
+    padding:22px 0 25px;
+  }
+
+  .cosmo-advisor__question { margin-bottom:14px; font-size:15px; }
+
+  .cosmo-advisor__choices {
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    margin-right:-16px;
+    padding-right:16px;
+    padding-bottom:4px;
+    scrollbar-width:none;
+  }
+  .cosmo-advisor__choices::-webkit-scrollbar { display:none; }
+
+  .cosmo-advisor__choice {
+    flex:0 0 auto;
+    min-height:42px;
+    font-size:12px;
+  }
+
+  .cosmo-advisor__result {
+    min-height:255px;
+    margin-top:26px;
+    padding:24px 22px 25px;
+  }
+  .cosmo-advisor__result::after { font-size:68px; right:-5px; }
+  .cosmo-advisor__result h3 { font-size:31px; }
+
+  .cosmo-faq__inner {
+    display:block;
+    padding:76px 0 84px;
+  }
+  .cosmo-faq__list { margin-top:46px; }
+  .cosmo-faq summary { padding:22px 0; font-size:16px; }
+  .cosmo-faq details p { padding-right:32px; font-size:13px; }
+
+  .cosmo-cambridge-choice__inner { padding:76px 0 82px; }
+  .cosmo-cambridge-choice__head { display:block; margin-bottom:46px; }
+  .cosmo-cambridge-choice__head p { margin-top:24px; font-size:15px; }
+  .cosmo-cambridge-choice__grid {
+    display:block;
+  }
+  .cosmo-cambridge-choice article,
+  .cosmo-cambridge-choice article + article {
+    min-height:0;
+    padding:26px 0 32px;
+    border-left:0;
+  }
+  .cosmo-cambridge-choice article small { margin-bottom:34px; }
+  .cosmo-cambridge-choice article h3 { font-size:35px; }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .cosmo-advisor__choice,
+  .cosmo-advisor__cta,
+  .cosmo-faq summary::after { transition:none; }
+}
