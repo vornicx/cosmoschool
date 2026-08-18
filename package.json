@@ -1,0 +1,12 @@
+{
+  "name": "cosmoschool-prototype",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/dev.mjs",
+    "start": "node scripts/dev.mjs",
+    "check": "npm run build && node scripts/check.mjs"
+  }
+}
