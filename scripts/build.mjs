@@ -28,17 +28,17 @@ const assets={
 await Promise.all(Object.entries(assets).map(async([name,url])=>{
  const target=path.join(imgDir,name);
  try{const stat=await fs.stat(target);if(stat.size>8000)return}catch{}
- const res=await fetch(url,{headers:{'User-Agent':'CosmoSchoolPrototype/3.0'}});
+ const res=await fetch(url,{headers:{'User-Agent':'CosmoSchoolPrototype/5.0'}});
  if(!res.ok)throw new Error(`Could not fetch ${name}: ${res.status}`);
  const bytes=Buffer.from(await res.arrayBuffer());
  if(bytes.length<8000)throw new Error(`Image ${name} is unexpectedly small`);
  await fs.writeFile(target,bytes);
 }));
-const {pages}=await import(pathToFileURL(path.join(root,'src/site-v3.mjs')).href+`?v=${Date.now()}`);
+const {pages}=await import(pathToFileURL(path.join(root,'src/site-v5.mjs')).href+`?v=${Date.now()}`);
 await fs.rm(dist,{recursive:true,force:true});
 await fs.mkdir(dist,{recursive:true});
 await fs.cp(pub,dist,{recursive:true});
 for(const [file,html] of Object.entries(pages)){
  const out=path.join(dist,file);await fs.mkdir(path.dirname(out),{recursive:true});await fs.writeFile(out,html);
 }
-console.log(`Built ${Object.keys(pages).length} business-focused routes + dedicated mobile layouts → dist/`);
+console.log(`Built ${Object.keys(pages).length} business-focused routes + dedicated mobile layouts + Cosmo quality layer v5 → dist/`);
