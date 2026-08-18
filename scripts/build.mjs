@@ -34,52 +34,32 @@ const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 
 async function packageImage(name,url){
   const target=path.join(imgDir,name);
-  try{
-    const stat=await fs.stat(target);
-    if(stat.size>8000)return;
-  }catch{}
-
+  try{const stat=await fs.stat(target);if(stat.size>8000)return}catch{}
   let lastError;
   for(let attempt=1;attempt<=3;attempt++){
     const controller=new AbortController();
     const timer=setTimeout(()=>controller.abort(),18000);
     try{
-      const res=await fetch(url,{
-        signal:controller.signal,
-        redirect:'follow',
-        headers:{
-          'User-Agent':'Mozilla/5.0 (compatible; CosmoSchoolPrototype/7.0)',
-          'Accept':'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
-          'Referer':'https://academiacosmoschool.com/'
-        }
-      });
+      const res=await fetch(url,{signal:controller.signal,redirect:'follow',headers:{'User-Agent':'Mozilla/5.0 (compatible; CosmoSchoolPrototype/7.0)','Accept':'image/avif,image/webp,image/apng,image/*,*/*;q=0.8','Referer':'https://academiacosmoschool.com/'}});
       if(!res.ok)throw new Error(`HTTP ${res.status}`);
-      const type=res.headers.get('content-type')||'';
-      if(!type.startsWith('image/'))throw new Error(`unexpected content-type ${type||'unknown'}`);
-      const bytes=Buffer.from(await res.arrayBuffer());
-      if(bytes.length<8000)throw new Error(`image is unexpectedly small (${bytes.length} bytes)`);
-      await fs.writeFile(target,bytes);
-      return;
-    }catch(error){
-      lastError=error;
-      if(attempt<3)await sleep(600*attempt);
-    }finally{
-      clearTimeout(timer);
-    }
+      const type=res.headers.get('content-type')||'';if(!type.startsWith('image/'))throw new Error(`unexpected content-type ${type||'unknown'}`);
+      const bytes=Buffer.from(await res.arrayBuffer());if(bytes.length<8000)throw new Error(`image is unexpectedly small (${bytes.length} bytes)`);
+      await fs.writeFile(target,bytes);return;
+    }catch(error){lastError=error;if(attempt<3)await sleep(600*attempt)}finally{clearTimeout(timer)}
   }
   throw new Error(`Could not package ${name} from Cosmo's official media: ${lastError?.message||'unknown error'}`);
 }
 
 await Promise.all(Object.entries(assets).map(([name,url])=>packageImage(name,url)));
-
 const {pages}=await import(pathToFileURL(path.join(root,'src/site-v7.mjs')).href+`?v=${Date.now()}`);
 await fs.rm(dist,{recursive:true,force:true});
 await fs.mkdir(dist,{recursive:true});
 await fs.cp(pub,dist,{recursive:true});
-for(const [file,html] of Object.entries(pages)){
-  const out=path.join(dist,file);
-  await fs.mkdir(path.dirname(out),{recursive:true});
-  await fs.writeFile(out,html);
-}
 
-console.log(`Built ${Object.keys(pages).length} routes + dedicated mobile + official Cosmo imagery + functional local lead capture v7 → dist/`);
+const mobileGrowth=await fs.readFile(path.join(pub,'local-growth-v7-mobile.css'),'utf8');
+await fs.appendFile(path.join(dist,'local-growth-v7.css'),`\n/* purpose-built mobile growth layer */\n${mobileGrowth}\n`);
+
+for(const [file,html] of Object.entries(pages)){
+  const out=path.join(dist,file);await fs.mkdir(path.dirname(out),{recursive:true});await fs.writeFile(out,html);
+}
+console.log(`Built ${Object.keys(pages).length} routes + purpose-built mobile growth flow + official Cosmo imagery + functional Netlify lead capture v7 → dist/`);
