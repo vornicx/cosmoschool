@@ -40,7 +40,7 @@ async function packageImage(name,url){
     const controller=new AbortController();
     const timer=setTimeout(()=>controller.abort(),18000);
     try{
-      const res=await fetch(url,{signal:controller.signal,redirect:'follow',headers:{'User-Agent':'Mozilla/5.0 (compatible; CosmoSchoolPrototype/7.0)','Accept':'image/avif,image/webp,image/apng,image/*,*/*;q=0.8','Referer':'https://academiacosmoschool.com/'}});
+      const res=await fetch(url,{signal:controller.signal,redirect:'follow',headers:{'User-Agent':'Mozilla/5.0 (compatible; CosmoSchoolPrototype/8.0)','Accept':'image/avif,image/webp,image/apng,image/*,*/*;q=0.8','Referer':'https://academiacosmoschool.com/'}});
       if(!res.ok)throw new Error(`HTTP ${res.status}`);
       const type=res.headers.get('content-type')||'';if(!type.startsWith('image/'))throw new Error(`unexpected content-type ${type||'unknown'}`);
       const bytes=Buffer.from(await res.arrayBuffer());if(bytes.length<8000)throw new Error(`image is unexpectedly small (${bytes.length} bytes)`);
@@ -51,7 +51,7 @@ async function packageImage(name,url){
 }
 
 await Promise.all(Object.entries(assets).map(([name,url])=>packageImage(name,url)));
-const {pages}=await import(pathToFileURL(path.join(root,'src/site-v7.mjs')).href+`?v=${Date.now()}`);
+const {pages}=await import(pathToFileURL(path.join(root,'src/site-v8.mjs')).href+`?v=${Date.now()}`);
 await fs.rm(dist,{recursive:true,force:true});
 await fs.mkdir(dist,{recursive:true});
 await fs.cp(pub,dist,{recursive:true});
@@ -62,4 +62,4 @@ await fs.appendFile(path.join(dist,'local-growth-v7.css'),`\n/* purpose-built mo
 for(const [file,html] of Object.entries(pages)){
   const out=path.join(dist,file);await fs.mkdir(path.dirname(out),{recursive:true});await fs.writeFile(out,html);
 }
-console.log(`Built ${Object.keys(pages).length} routes + purpose-built mobile growth flow + official Cosmo imagery + functional Netlify lead capture v7 → dist/`);
+console.log(`Built ${Object.keys(pages).length} routes + flagship v8 presentation layer + purpose-built mobile conversion + official Cosmo imagery + functional Netlify lead capture → dist/`);
