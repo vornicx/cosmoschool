@@ -31,7 +31,7 @@ const decisionRibbon=`
 
 const enhance=(html,file)=>{
   html=html.replaceAll('Reservar plaza','Solicitar información');
-  html=html.replace('</head>',`<link rel="stylesheet" href="/flagship-v8.css"><meta name="color-scheme" content="light dark"></head>`);
+  html=html.replace('</head>',`<link rel="stylesheet" href="/flagship-v8.css"><meta name="color-scheme" content="light"></head>`);
   if(file==='index.html' && !html.includes('v8-decision-ribbon')) html=html.replace('</main>',`${decisionRibbon}</main>`);
   html=html.replace('</body>',`${mobileDock(file)}<div class="v8-route-tag" aria-hidden="true">${routeLabel[file]||'Cosmo'}</div><script src="/flagship-v8.js"></script></body>`);
   return html;
