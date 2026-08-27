@@ -1,0 +1,157 @@
+/* Cosmo School / Archic flagship pass v8
+   Goal: stronger hierarchy, cleaner conversion surfaces and purpose-built mobile actions
+   without inventing testimonials, staff, ratios or results. */
+
+:root{
+  --v8-ink:#081a3a;
+  --v8-ink-soft:#31405d;
+  --v8-blue:#0b2cff;
+  --v8-blue-deep:#061d8f;
+  --v8-paper:#f7f5ef;
+  --v8-white:#fff;
+  --v8-line:rgba(8,26,58,.14);
+  --v8-line-light:rgba(255,255,255,.18);
+  --v8-shadow:0 28px 80px rgba(8,26,58,.13);
+  --v8-ease:cubic-bezier(.2,.8,.2,1);
+}
+
+html{scroll-padding-top:90px}
+body{background:var(--v8-paper);text-rendering:optimizeLegibility}
+a,button,input,select,textarea{-webkit-tap-highlight-color:transparent}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid rgba(11,44,255,.36);outline-offset:4px}
+
+/* Header: make the product feel calmer and less prototype-like. */
+.header{transition:background .35s var(--v8-ease),box-shadow .35s var(--v8-ease),transform .35s var(--v8-ease)}
+.header.scrolled,.header[data-scrolled="true"]{background:rgba(247,245,239,.9);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 1px 0 var(--v8-line)}
+.header .pill{transition:transform .25s var(--v8-ease),background .25s var(--v8-ease),color .25s var(--v8-ease)}
+.header .pill:hover{transform:translateY(-2px)}
+
+/* Existing decision layer: more editorial, less card-grid. */
+.qv5-finder{padding-block:clamp(92px,9vw,150px)!important;background:linear-gradient(180deg,#fff 0%,var(--v8-paper) 100%)}
+.qv5-finder .qv5-wrap{position:relative}
+.qv5-kicker{padding-bottom:18px!important;border-bottom:1px solid var(--v8-line)!important;margin-bottom:48px!important}
+.qv5-kicker span:first-child{font-weight:850;letter-spacing:.14em}
+.qv5-kicker span:last-child{color:#6f7a8f}
+.qv5-finder-grid{gap:clamp(48px,7vw,112px)!important;align-items:start!important}
+.qv5-finder-copy h2{max-width:700px;font-size:clamp(48px,5.2vw,82px)!important;line-height:.94!important;letter-spacing:-.055em!important;margin-bottom:24px!important}
+.qv5-finder-copy>p{max-width:640px;font-size:17px!important;line-height:1.65!important;color:var(--v8-ink-soft)!important}
+.qv5-step{padding:28px 0!important;border-top:1px solid var(--v8-line)!important}
+.qv5-step:last-child{border-bottom:1px solid var(--v8-line)!important}
+.qv5-step small{display:block;margin-bottom:14px!important;color:#68748a!important;font-weight:800!important;letter-spacing:.12em!important}
+.qv5-choice-row{gap:8px!important;display:flex!important;flex-wrap:wrap!important}
+.qv5-choice-row button{border-radius:0!important;background:transparent!important;border:1px solid var(--v8-line)!important;padding:13px 17px!important;font-weight:760!important;color:var(--v8-ink)!important;transition:background .22s var(--v8-ease),color .22s var(--v8-ease),border-color .22s var(--v8-ease),transform .22s var(--v8-ease)!important}
+.qv5-choice-row button:hover,.qv5-choice-row button.is-active,.qv5-choice-row button[aria-pressed="true"]{background:var(--v8-ink)!important;color:#fff!important;border-color:var(--v8-ink)!important;transform:translateY(-2px)}
+.qv5-result{position:sticky!important;top:112px!important;min-height:420px!important;padding:42px!important;background:var(--v8-ink)!important;color:#fff!important;border:0!important;box-shadow:var(--v8-shadow)!important;display:flex!important;flex-direction:column!important;justify-content:flex-end!important;overflow:hidden}
+.qv5-result:before{content:"COSMO";position:absolute;right:-22px;top:-30px;font-size:clamp(88px,10vw,148px);line-height:1;font-weight:900;letter-spacing:-.08em;color:rgba(255,255,255,.045);pointer-events:none}
+.qv5-result>span{color:#9fb0ff!important;font-size:11px!important;letter-spacing:.14em!important;font-weight:850!important}
+.qv5-result>strong{font-size:clamp(30px,3vw,46px)!important;line-height:1.04!important;letter-spacing:-.04em!important;margin:18px 0 16px!important}
+.qv5-result>p{color:rgba(255,255,255,.7)!important;line-height:1.6!important;max-width:390px}
+.qv5-result>a{margin-top:26px!important;color:#fff!important;border-bottom:1px solid rgba(255,255,255,.48)!important;padding-bottom:7px!important;width:max-content!important;font-weight:780!important}
+
+/* Factual proof becomes a restrained ledger rather than four equal promo cards. */
+.qv5-proof{padding-block:clamp(90px,9vw,145px)!important;background:var(--v8-paper)!important}
+.qv5-proof-grid{display:grid!important;grid-template-columns:repeat(12,1fr)!important;gap:0!important;border-top:1px solid var(--v8-line)!important}
+.qv5-proof-grid article{grid-column:span 6!important;min-height:270px!important;padding:34px 38px 38px 0!important;border:0!important;border-bottom:1px solid var(--v8-line)!important;background:transparent!important}
+.qv5-proof-grid article:nth-child(even){padding-left:38px!important;border-left:1px solid var(--v8-line)!important}
+.qv5-proof-grid article b{font-size:clamp(42px,5vw,72px)!important;letter-spacing:-.06em!important;color:var(--v8-blue)!important;line-height:.95!important}
+.qv5-proof-grid article h3{font-size:24px!important;letter-spacing:-.03em!important;margin:20px 0 10px!important}
+.qv5-proof-grid article p{max-width:470px!important;color:var(--v8-ink-soft)!important;line-height:1.65!important}
+
+/* Local centre section: closer to a proper admissions/contact surface. */
+.v7-local{padding-block:clamp(100px,10vw,160px)!important;background:#fff!important}
+.v7-local-intro{max-width:880px!important;margin-bottom:54px!important}
+.v7-local-intro h2{font-size:clamp(48px,5.8vw,86px)!important;line-height:.95!important;letter-spacing:-.058em!important;margin:14px 0 24px!important}
+.v7-local-intro p{font-size:17px!important;line-height:1.68!important;color:var(--v8-ink-soft)!important;max-width:760px!important}
+.v7-centre-switch{border:1px solid var(--v8-line)!important;background:var(--v8-paper)!important;box-shadow:0 18px 60px rgba(8,26,58,.06)!important}
+.v7-centre-tabs{padding:8px!important;border-bottom:1px solid var(--v8-line)!important;gap:6px!important}
+.v7-centre-tabs button{border-radius:0!important;border:0!important;padding:14px 18px!important;background:transparent!important;color:var(--v8-ink-soft)!important;font-weight:800!important}
+.v7-centre-tabs button.is-active{background:var(--v8-ink)!important;color:#fff!important}
+.v7-map-frame{min-height:430px!important;background:#e9e8e3!important}
+.v7-map-frame iframe{min-height:430px!important;filter:saturate(.82) contrast(1.03)!important}
+.v7-centre-info{padding:24px 28px!important;background:#fff!important;border-top:1px solid var(--v8-line)!important}
+.v7-centre-info strong{font-size:22px!important;letter-spacing:-.025em!important}
+.v7-centre-actions a{font-weight:780!important;border-bottom:1px solid currentColor!important;padding-bottom:4px!important}
+
+/* Lead capture: clean admissions form with serious spacing. */
+.v7-capture,.v7-enrol-live{padding-block:clamp(100px,10vw,160px)!important;background:var(--v8-ink)!important;color:#fff!important}
+.v7-capture-grid,.v7-enrol-live-grid{gap:clamp(56px,8vw,124px)!important;align-items:start!important}
+.v7-capture-copy,.v7-enrol-live-grid>div:first-child{position:sticky!important;top:116px!important}
+.v7-capture-copy h2,.v7-enrol-live-grid h2{font-size:clamp(48px,5.6vw,84px)!important;line-height:.95!important;letter-spacing:-.055em!important;margin:14px 0 24px!important}
+.v7-capture-copy>p,.v7-enrol-live-grid>div:first-child>p{color:rgba(255,255,255,.7)!important;font-size:16px!important;line-height:1.7!important;max-width:590px!important}
+.v7-proof-line{display:flex!important;flex-wrap:wrap!important;gap:8px!important;margin-top:34px!important}
+.v7-proof-line span{border:1px solid var(--v8-line-light)!important;padding:10px 12px!important;font-size:11px!important;letter-spacing:.06em!important;color:rgba(255,255,255,.84)!important}
+.v7-lead-form{background:#fff!important;color:var(--v8-ink)!important;padding:clamp(28px,3vw,44px)!important;box-shadow:0 32px 100px rgba(0,0,0,.22)!important;border:0!important}
+.v7-field label{font-weight:800!important;font-size:11px!important;letter-spacing:.06em!important;text-transform:uppercase!important;color:#5f6b80!important}
+.v7-field input,.v7-field select,.v7-field textarea{border:0!important;border-bottom:1px solid rgba(8,26,58,.24)!important;border-radius:0!important;background:transparent!important;padding:12px 0!important;min-height:48px!important;color:var(--v8-ink)!important;box-shadow:none!important}
+.v7-field input:focus,.v7-field select:focus,.v7-field textarea:focus{border-bottom-color:var(--v8-blue)!important;outline:none!important}
+.v7-consent{font-size:12px!important;line-height:1.5!important;color:#667085!important}
+.v7-submit{min-height:56px!important;background:var(--v8-blue)!important;color:#fff!important;border:0!important;border-radius:0!important;padding:0 20px!important;font-weight:820!important;transition:transform .25s var(--v8-ease),background .25s var(--v8-ease)!important}
+.v7-submit:hover{transform:translateY(-2px)!important;background:var(--v8-blue-deep)!important}
+.v7-form-note{font-size:11px!important;color:#7b8494!important;line-height:1.5!important}
+
+/* Contact intent rail: keep it simple and very tappable. */
+.v7-contact-intent{padding-block:clamp(100px,10vw,150px)!important;background:#fff!important}
+.v7-contact-intent h2{font-size:clamp(48px,5.5vw,82px)!important;line-height:.95!important;letter-spacing:-.055em!important;max-width:820px!important}
+.v7-intent-rail{border-top:1px solid var(--v8-line)!important;margin-top:48px!important}
+.v7-intent-rail>a{min-height:122px!important;border-bottom:1px solid var(--v8-line)!important;background:transparent!important;transition:background .25s var(--v8-ease),padding .25s var(--v8-ease)!important}
+.v7-intent-rail>a:hover{background:var(--v8-paper)!important;padding-inline:18px!important}
+.v7-intent-rail strong{font-size:clamp(24px,2.7vw,38px)!important;letter-spacing:-.035em!important}
+
+/* V8 fact ribbon: last thing on home, designed as a strong recap rather than another section. */
+.v8-decision-ribbon{background:var(--v8-blue);color:#fff;padding:0 28px 32px}
+.v8-ribbon-inner{width:min(1240px,100%);margin:auto;border-top:1px solid rgba(255,255,255,.3);display:grid;grid-template-columns:1.15fr 1fr auto;gap:38px;align-items:center;padding:30px 0 0}
+.v8-ribbon-copy{display:grid;gap:8px}.v8-ribbon-copy small{font-size:10px;letter-spacing:.15em;font-weight:850;color:#bfc8ff}.v8-ribbon-copy strong{font-size:22px;line-height:1.15;letter-spacing:-.02em;max-width:470px}
+.v8-ribbon-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.v8-ribbon-facts span{font-size:11px;line-height:1.35;color:rgba(255,255,255,.72)}.v8-ribbon-facts b{display:block;font-size:24px;color:#fff;letter-spacing:-.04em;margin-bottom:3px}
+.v8-ribbon-inner>a{white-space:nowrap;border:1px solid rgba(255,255,255,.65);padding:14px 17px;font-size:12px;font-weight:850;transition:background .22s,color .22s}.v8-ribbon-inner>a:hover{background:#fff;color:var(--v8-blue)}
+
+/* Quiet route marker adds craft on desktop without becoming UI clutter. */
+.v8-route-tag{position:fixed;z-index:90;left:18px;bottom:18px;pointer-events:none;font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:850;color:rgba(8,26,58,.42);writing-mode:vertical-rl;transform:rotate(180deg)}
+.v8-mobile-dock{display:none}
+
+/* Thanks page polish. */
+.v7-thanks{background:var(--v8-ink)!important;color:#fff!important;min-height:100svh!important}
+.v7-thanks-inner{max-width:840px!important}
+.v7-thanks-inner h1{font-size:clamp(50px,7vw,96px)!important;line-height:.92!important;letter-spacing:-.06em!important}
+.v7-thanks-inner p{font-size:17px!important;line-height:1.7!important;color:rgba(255,255,255,.7)!important}
+
+@media (max-width: 900px){
+  body{padding-bottom:78px}
+  .v8-route-tag{display:none}
+  .v8-mobile-dock{position:fixed;z-index:9999;display:grid;grid-template-columns:.78fr 1.22fr;left:10px;right:10px;bottom:max(10px,env(safe-area-inset-bottom));background:rgba(255,255,255,.94);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 18px 60px rgba(8,26,58,.22);border:1px solid rgba(8,26,58,.12);padding:6px}
+  .v8-mobile-dock a{min-height:54px;padding:8px 12px;display:flex;flex-direction:column;justify-content:center;gap:3px}
+  .v8-mobile-dock a span{font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:850;color:#748096}
+  .v8-mobile-dock a b{font-size:12px;line-height:1.1;color:var(--v8-ink)}
+  .v8-mobile-dock .v8-dock-primary{background:var(--v8-blue)}
+  .v8-mobile-dock .v8-dock-primary span{color:#bfc8ff}.v8-mobile-dock .v8-dock-primary b{color:#fff}
+
+  .qv5-finder,.qv5-proof,.v7-local,.v7-capture,.v7-enrol-live,.v7-contact-intent{padding-block:76px!important}
+  .qv5-result,.v7-capture-copy,.v7-enrol-live-grid>div:first-child{position:relative!important;top:auto!important}
+  .qv5-finder-grid,.v7-capture-grid,.v7-enrol-live-grid{gap:42px!important}
+  .qv5-finder-copy h2,.v7-local-intro h2,.v7-capture-copy h2,.v7-enrol-live-grid h2,.v7-contact-intent h2{font-size:clamp(40px,11vw,62px)!important}
+  .qv5-result{min-height:330px!important;padding:30px!important}
+  .qv5-proof-grid{grid-template-columns:1fr!important}.qv5-proof-grid article{grid-column:auto!important;min-height:0!important;padding:26px 0!important;border-left:0!important}.qv5-proof-grid article:nth-child(even){padding-left:0!important;border-left:0!important}
+  .v7-map-frame,.v7-map-frame iframe{min-height:330px!important}
+  .v7-centre-info{display:grid!important;gap:18px!important}.v7-centre-actions{display:flex!important;flex-wrap:wrap!important;gap:16px!important}
+  .v7-lead-form{padding:26px 20px!important}
+  .v8-decision-ribbon{padding:0 20px 28px}.v8-ribbon-inner{grid-template-columns:1fr;gap:26px}.v8-ribbon-facts{grid-template-columns:repeat(3,1fr)}.v8-ribbon-inner>a{width:100%;text-align:center}
+}
+
+@media (max-width: 640px){
+  .qv5-desktop,.v7-desktop{display:none!important}
+  .qv5-mobile,.v6-mobile,.v7-mobile{display:block!important}
+  .v7-mnear,.v7-mlead,.v7-menrol{background:var(--v8-paper)!important;color:var(--v8-ink)!important}
+  .v7-mpad{padding-inline:20px!important}
+  .v7-mnear h2,.v7-mlead h2,.v7-menrol h2{font-size:clamp(38px,11.5vw,58px)!important;line-height:.96!important;letter-spacing:-.055em!important}
+  .v7-mcentres article{border-radius:0!important;border:1px solid var(--v8-line)!important;background:#fff!important;box-shadow:none!important}
+  .v7-mcentres article a{min-height:46px!important;display:inline-flex!important;align-items:center!important}
+  .v7-mform{background:#fff!important;border:1px solid var(--v8-line)!important;padding:20px!important;box-shadow:0 16px 50px rgba(8,26,58,.08)!important}
+  .v7-mform>label>span,.v7-mform legend{font-size:10px!important;letter-spacing:.1em!important;font-weight:850!important;text-transform:uppercase!important;color:#657087!important}
+  .v7-mform input,.v7-mform select{min-height:50px!important;border-radius:0!important;background:var(--v8-paper)!important;border:1px solid rgba(8,26,58,.14)!important}
+  .v7-mchoices{gap:6px!important}.v7-mchoices label span{border-radius:0!important;min-height:44px!important;display:flex!important;align-items:center!important;justify-content:center!important}
+  .v7-mform button{min-height:54px!important;border-radius:0!important;background:var(--v8-blue)!important;color:#fff!important;font-weight:850!important}
+  .v8-ribbon-facts{gap:10px}.v8-ribbon-facts b{font-size:20px}.v8-ribbon-facts span{font-size:10px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*:before,*:after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
+}
