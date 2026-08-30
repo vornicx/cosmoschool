@@ -1,4 +1,4 @@
-# Cosmo School — Archic commercial prototype
+# Cosmo School — Archic growth prototype v9
 
 Prototipo web completo para **Cosmo School (Écija)**. Es un sitio multipágina real y construible, pensado para presentar una alternativa comercial publicable, no una landing de demostración aislada.
 
@@ -24,6 +24,12 @@ El resultado se genera en `dist/`. GitHub Actions ejecuta `npm run check` en cad
 - `/` — Home / orientación + captación local
 - `/cursos/` — Oferta y comparación / Decide
 - `/cambridge/` — B1, B2, C1, C2 / Decide
+- `/test-de-nivel/` — Test orientativo en ocho pasos / Engage + Convert
+- `/guias/` — Hub de contenidos útiles / Discover
+- `/guias/elegir-curso-ingles/` — Guía por edad, objetivo y formato / Discover
+- `/guias/elegir-examen-cambridge/` — Decisión B1–C2 / Discover
+- `/guias/diferencias-b1-b2/` — Comparación práctica de niveles / Discover
+- `/guias/preparar-speaking-cambridge/` — Rutina de práctica oral / Discover
 - `/metodologia/` — Método / Story
 - `/sobre-nosotros/` — Historia y datos verificables / Story + Prove
 - `/matricula/` — Solicitud de matrícula / Convert
@@ -40,6 +46,22 @@ El resultado se genera en `dist/`. GitHub Actions ejecuta `npm run check` en cad
 - `public/quality-v5.*` y `public/quality-v6.*`: dirección visual, accesibilidad, interacción y mobile específico.
 - `public/local-growth-v7.*`: experiencia de captación local desktop.
 - `public/local-growth-v7-mobile.css`: interfaz móvil propia para sedes y solicitud de información; se empaqueta dentro de la hoja de producción durante el build.
+- `src/site-v8.mjs`: salida final unificada; elimina capas redundantes y bloquea el nuevo copy comercial.
+- `public/quality-v8.*`: sistema visual profesional compartido por las nueve rutas, motion y accesibilidad de navegación.
+- `src/site-v9.mjs`: arquitectura de alcance, metadatos por ruta, test orientativo, FAQ y guías editoriales.
+- `public/quality-v9.*`: componentes de crecimiento, lectura, test, accesibilidad y responsive de las nuevas rutas.
+- `ARCHIC-DESIGN-v9.md`: contrato de diseño, benchmark, performance budget y fidelity ledger.
+
+## Rendimiento de producción
+
+El build no despliega las capas históricas como peticiones separadas. Las empaqueta en un único CSS y un único JS con nombre versionado por contenido y caché inmutable.
+
+- 1 CSS de producción (~96 KB sin comprimir).
+- 1 JS diferido (~24 KB sin comprimir).
+- 18 derivados WebP responsivos en 480, 768 y 1024/1280 px.
+- Imágenes desplegadas: ~519 KB frente a ~1,7 MB de originales.
+- `width`, `height`, `srcset`, `sizes`, `loading` y `decoding` en todas las imágenes de contenido.
+- `sitemap.xml`, `robots.txt`, manifest, canonical, Open Graph, Twitter Card y breadcrumbs estructurados.
 
 ## Captación real
 
@@ -61,11 +83,13 @@ El `netlify.toml` incluye `X-Robots-Tag: noindex, nofollow` deliberadamente. La 
 
 Cuando este proyecto sustituya realmente a la web oficial y se publique en `academiacosmoschool.com`, hay que retirar ese header y revisar entonces canonical, Search Console y sitemap.
 
-## Archic quality pass
+## Archic quality pass v9
 
 - Dirección visual específica para Cosmo; el estándar Archic controla calidad, no estética repetida.
 - Fotografía empaquetada localmente durante el build a partir de recursos publicados por Cosmo School.
 - Home con orientación por edad/objetivo y captación local.
+- Prueba de nivel orientativa sin registro, con resultado inmediato y disclaimer explícito.
+- Cuatro guías evergreen conectadas con cursos y Cambridge para ampliar alcance orgánico con contenido útil.
 - Selector de centro con rutas a Maps en desktop; en móvil se sustituye por acciones táctiles ligeras, no por el mismo componente responsive.
 - Cursos con comparación entre presencial, online, one-to-one e intensivo.
 - Cambridge con recorrido de decisión B1—C2.
@@ -74,6 +98,7 @@ Cuando este proyecto sustituya realmente a la web oficial y se publique en `acad
 - Mobile no es un simple reflow: mantiene componentes y recorridos escritos específicamente para pantalla pequeña.
 - Motion jerárquico, microinteracciones, scroll reveal y `prefers-reduced-motion`.
 - `EducationalOrganization` + `LocalBusiness`, dos localizaciones, horario de recepción, `areaServed` y catálogo de servicios en JSON-LD.
+- `BreadcrumbList`, `FAQPage`, `Article` y `WebApplication` donde corresponde.
 - Sin testimonios, profesores, ratios o resultados inventados.
 - QA automática de rutas, assets, enlaces, fotografía, structured data, formularios y señales de experiencia móvil.
 

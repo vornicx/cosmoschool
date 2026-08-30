@@ -1,3 +1,8 @@
 dist/
 .DS_Store
 .vercel/
+public/app-v3.js
+public/styles-v3.css
+public/images/cosmo-*.png
+public/images/cosmo-*.jpg
+public/images/cosmo-*.webp
