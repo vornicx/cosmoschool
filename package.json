@@ -8,5 +8,8 @@
     "dev": "node scripts/dev.mjs",
     "start": "node scripts/dev.mjs",
     "check": "npm run build && node scripts/check.mjs"
+  },
+  "dependencies": {
+    "sharp": "0.35.4"
   }
 }
