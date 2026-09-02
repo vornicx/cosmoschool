@@ -12,4 +12,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm run check
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Run quality checks
+        run: npm run check
